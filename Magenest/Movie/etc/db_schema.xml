@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/db_schema.xsd">
+
+    <table name="magenest_director" resource="default" engine="innodb" comment="Director Table">
+        <column xsi:type="int" name="director_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Director ID"/>
+        <column xsi:type="text" name="name" nullable="true" comment="Director Name"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="director_id"/>
+        </constraint>
+    </table>
+
+    <table name="magenest_movie" resource="default" engine="innodb" comment="Movie Table">
+        <column xsi:type="int" name="movie_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Movie ID"/>
+        <column xsi:type="text" name="name" nullable="true" comment="Movie Name"/>
+        <column xsi:type="text" name="description" nullable="true" comment="Movie Description"/>
+        <column xsi:type="int" name="rating" padding="10" unsigned="true" nullable="true" comment="Rating"/>
+        <column xsi:type="int" name="director_id" padding="10" unsigned="true" nullable="false" comment="Director ID FK"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="movie_id"/>
+        </constraint>
+
+        <constraint xsi:type="foreign" referenceId="FK_MAGENEST_MOVIE_DIRECTOR_ID_MAGENEST_DIRECTOR_DIRECTOR_ID" table="magenest_movie" column="director_id" referenceTable="magenest_director" referenceColumn="director_id" onDelete="CASCADE"/>
+    </table>
+
+</schema>
