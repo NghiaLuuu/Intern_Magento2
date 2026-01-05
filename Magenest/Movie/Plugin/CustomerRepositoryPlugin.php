@@ -6,24 +6,31 @@ use Magento\Customer\Api\Data\CustomerInterface;
 
 class CustomerRepositoryPlugin
 {
-    /**
-     * Can thiệp trước khi hàm save() được chạy
-     *
-     * @param CustomerRepositoryInterface $subject Đối tượng Repository gốc
-     * @param CustomerInterface $customer Đối tượng khách hàng đang được lưu (Input 1)
-     * @param string|null $passwordHash Password hash (Input 2 - nếu có)
-     * @return array Trả về danh sách tham số đã chỉnh sửa
-     */
-    public function beforeSave(
-        CustomerRepositoryInterface $subject,
-        CustomerInterface $customer,
-                                    $passwordHash = null
-    ) {
-        // Thay đổi Last Name tại đây
-        $customer->setLastname('PluginLastname');
+    public function beforeSave(CustomerRepositoryInterface $subject, CustomerInterface $customer, $passwordHash = null)
+    {
+        // Thay đổi dữ liệu trước khi hàm gốc chạy
+        $customer->setLastname('Before');
 
-        // BẮT BUỘC: Phải trả về mảng chứa các tham số (đã sửa hoặc giữ nguyên)
-        // theo đúng thứ tự của hàm gốc save($customer, $passwordHash)
+        // BẮT BUỘC: Trả về mảng tham số
         return [$customer, $passwordHash];
+    }
+    public function aroundSave(CustomerRepositoryInterface $subject, \Closure $proceed, CustomerInterface $customer, $passwordHash = null)
+    {
+        // --- Code chạy TRƯỚC khi gọi hàm gốc (giống before) ---
+        $customer->setMiddlename('Around');
+
+        // GỌI HÀM GỐC: Dòng này sẽ thực sự lưu dữ liệu xuống DB
+        // Biến $result ở đây chính là Customer đã được lưu
+        $result = $proceed($customer, $passwordHash);
+
+        // --- Code chạy SAU khi gọi hàm gốc (giống after) ---
+        // Lúc này dữ liệu đã vào DB rồi.
+
+        return $result; // BẮT BUỘC trả về kết quả
+    }
+    public function afterSave(CustomerRepositoryInterface $subject, CustomerInterface $result)
+    {
+        $result->setFirstname('After');
+        return $result; // BẮT BUỘC trả về kết quả
     }
 }
