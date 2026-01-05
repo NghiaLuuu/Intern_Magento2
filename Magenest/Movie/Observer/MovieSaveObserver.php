@@ -10,7 +10,7 @@ class MovieSaveObserver implements ObserverInterface
     {
         // Lấy đối tượng movie (tùy vào cách đặt tên trong model mà là getObject hay getMagenestMovie)
         // Cách an toàn nhất là lấy data_object
-        $movie = $observer->getEvent()->getDataObject();
+        $movie = $observer->getEvent()->getMovie();
 
         // Set rating về 0
         $movie->setRating(0);
