@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/db_schema.xsd">
+
+    <table name="iuh_author" resource="default" engine="innodb" comment="Author Table">
+        <column xsi:type="int" name="author_id" unsigned="true" nullable="false" identity="true" comment="Author ID"/>
+        <column xsi:type="text" name="name" nullable="false" comment="Author Name"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="author_id"/>
+        </constraint>
+    </table>
+
+    <table name="iuh_book" resource="default" engine="innodb" comment="Book Table">
+        <column xsi:type="int" name="book_id" unsigned="true" nullable="false" identity="true" comment="Book ID"/>
+        <column xsi:type="text" name="title" nullable="false" comment="Book Title"/>
+        <column xsi:type="text" name="description" nullable="true" comment="Book Description"/>
+        <column xsi:type="int" name="rating" unsigned="true" nullable="true" comment="Rating"/>
+        <column xsi:type="int" name="author_id" unsigned="true" nullable="false" comment="Author ID FK"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="book_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="FK_BOOK_AUTHOR" table="iuh_book" column="author_id" referenceTable="iuh_author" referenceColumn="author_id" onDelete="CASCADE"/>
+    </table>
+
+</schema>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="IUH\Library\Api\Data\BookInterface" type="IUH\Library\Model\Book"/>
+    <preference for="IUH\Library\Api\BookManagementInterface" type="IUH\Library\Model\BookManagement"/>
+    <preference for="IUH\Library\Api\Data\AuthorInterface" type="IUH\Library\Model\Author"/>
+    <preference for="IUH\Library\Api\AuthorManagementInterface" type="IUH\Library\Model\AuthorManagement"/>
+
+</config>
