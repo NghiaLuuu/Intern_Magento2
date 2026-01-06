@@ -6,8 +6,8 @@ use IUH\Library\Api\Data\AuthorInterface;
 interface AuthorManagementInterface
 {
     /**
-     * @param mixed $author
-     * @return AuthorInterface
+     * @param \IUH\Library\Api\Data\AuthorInterface $author
+     * @return \IUH\Library\Api\Data\AuthorInterface
      */
-    public function create($author);
+    public function create(AuthorInterface $author);
 }
