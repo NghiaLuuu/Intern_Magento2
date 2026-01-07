@@ -15,4 +15,17 @@
         </resources>
     </route>
 
+    <route url="/V1/library/books" method="GET">
+        <service class="IUH\Library\Api\BookManagementInterface" method="getList"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <route url="/V1/library/books/:id" method="GET">
+        <service class="IUH\Library\Api\BookManagementInterface" method="getById"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
 </routes>
