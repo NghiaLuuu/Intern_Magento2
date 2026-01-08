@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <type name="SmileCare\FlashSale\Model\Deal\DataProvider">
+        <arguments>
+            <argument name="name" xsi:type="string">smilecare_flashsale_deal_form_data_source</argument>
+
+            <argument name="primaryFieldName" xsi:type="string">deal_id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="collectionFactory" xsi:type="object">SmileCare\FlashSale\Model\ResourceModel\Deal\CollectionFactory</argument>
+        </arguments>
+    </type>
+
+</config>

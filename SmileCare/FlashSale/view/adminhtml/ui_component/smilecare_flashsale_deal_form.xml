@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">smilecare_flashsale_deal_form.smilecare_flashsale_deal_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Flash Sale Deal</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+
+    <settings>
+        <buttons>
+            <button name="back" class="SmileCare\FlashSale\Block\Adminhtml\Deal\Edit\BackButton"/>
+            <button name="delete" class="SmileCare\FlashSale\Block\Adminhtml\Deal\Edit\DeleteButton"/>
+            <button name="reset">
+                <param name="label" xsi:type="string" translate="true">Reset</param>
+                <param name="class" xsi:type="string">reset</param>
+                <param name="on_click" xsi:type="string">location.reload();</param>
+                <param name="sort_order" xsi:type="number">30</param>
+            </button>
+            <button name="save_and_continue" class="SmileCare\FlashSale\Block\Adminhtml\Deal\Edit\SaveAndContinueButton"/>
+            <button name="save" class="SmileCare\FlashSale\Block\Adminhtml\Deal\Edit\SaveButton"/>
+        </buttons>
+        <namespace>smilecare_flashsale_deal_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>smilecare_flashsale_deal_form.smilecare_flashsale_deal_form_data_source</dep>
+        </deps>
+    </settings>
+
+    <dataSource name="smilecare_flashsale_deal_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="flashsale/deal/save"/>
+        </settings>
+        <dataProvider class="SmileCare\FlashSale\Model\Deal\DataProvider" name="smilecare_flashsale_deal_form_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>deal_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+    <fieldset name="general">
+        <settings>
+            <label translate="true">General Information</label>
+        </settings>
+
+        <field name="deal_id" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+            </settings>
+        </field>
+
+        <field name="product_id" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Product ID</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="validate-digits" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+
+        <field name="deal_price" formElement="input">
+            <settings>
+                <dataType>price</dataType>
+                <label translate="true">Deal Price</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="validate-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+
+        <field name="qty_limit" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Quantity Limit</label>
+                <validation>
+                    <rule name="validate-digits" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+
+        <field name="start_time" formElement="date">
+            <settings>
+                <dataType>date</dataType>
+                <label translate="true">Start Time</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <date>
+                    <settings>
+                        <options>
+                            <option name="dateFormat" xsi:type="string">yyyy-MM-dd</option>
+                            <option name="timeFormat" xsi:type="string">HH:mm:ss</option>
+                            <option name="showsTime" xsi:type="boolean">true</option>
+                        </options>
+                    </settings>
+                </date>
+            </formElements>
+        </field>
+
+        <field name="end_time" formElement="date">
+            <settings>
+                <dataType>date</dataType>
+                <label translate="true">End Time</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <date>
+                    <settings>
+                        <options>
+                            <option name="dateFormat" xsi:type="string">yyyy-MM-dd</option>
+                            <option name="timeFormat" xsi:type="string">HH:mm:ss</option>
+                            <option name="showsTime" xsi:type="boolean">true</option>
+                        </options>
+                    </settings>
+                </date>
+            </formElements>
+        </field>
+
+        <field name="is_active" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Is Active</label>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+    </fieldset>
+</form>
