@@ -1,0 +1,9 @@
+type Brand {
+    id: Int
+    name: String
+    image: String
+}
+
+type Query {
+    brands: [Brand] @resolver(class: "NghiaStore\\Brand\\Model\\Resolver\\Brand")
+}

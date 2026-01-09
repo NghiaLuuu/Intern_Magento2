@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!-- Repository -->
+    <preference
+        for="NghiaStore\Brand\Api\BrandRepositoryInterface"
+        type="NghiaStore\Brand\Repository\BrandRepository"/>
+
+    <!-- Search Results -->
+    <preference
+        for="NghiaStore\Brand\Api\Data\BrandSearchResultsInterface"
+        type="Magento\Framework\Api\SearchResults"/>
+
+    <!-- Business Service -->
+    <preference
+        for="NghiaStore\Brand\Api\BrandManagementInterface"
+        type="NghiaStore\Brand\Service\BrandManagementService"/>
+
+</config>
