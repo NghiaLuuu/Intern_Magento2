@@ -123,6 +123,15 @@ class BrandRepository implements BrandRepositoryInterface
     /**
      * @inheritdoc
      */
+    public function deleteById(int $brandId): bool
+    {
+        $brand = $this->getById($brandId);
+        return $this->delete($brand);
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function getList(
         SearchCriteriaInterface $searchCriteria
     ): BrandSearchResultsInterface {

@@ -39,6 +39,16 @@ interface BrandRepositoryInterface
     public function delete(BrandInterface $brand): bool;
 
     /**
+     * Delete brand by ID
+     *
+     * @param int $brandId
+     * @return bool
+     * @throws NoSuchEntityException
+     * @throws LocalizedException
+     */
+    public function deleteById(int $brandId): bool;
+
+    /**
      * Get brand list
      *
      * @param SearchCriteriaInterface $searchCriteria
